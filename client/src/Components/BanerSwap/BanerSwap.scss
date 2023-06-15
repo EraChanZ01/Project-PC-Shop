@@ -1,0 +1,121 @@
+%button-block {
+    border: none;
+    width: 140px;
+    height: 140px;
+}
+
+.main-page-baner {
+    .baner {
+        height: 650px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 0px 65% 0px 170px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        transition: background 0.2s ease;
+
+        .blockForText {
+            margin: 30px 0px 160px 0px;
+            color: white;
+
+            h1 {
+                line-height: 36px;
+                letter-spacing: 3px;
+                font-size: 36px;
+            }
+
+            p {
+                font-size: 22px;
+                font-weight: 500;
+                line-height: 28px;
+                letter-spacing: 3px;
+            }
+        }
+    }
+
+    .button-block {
+        height: 328px;
+        background: rgb(26, 26, 26);
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 50px;
+        padding: 0px 370px 0px 370px;
+        border-top: 1px solid rgb(54, 54, 54);
+
+        .button-frame {
+            margin: 50px 0px 20px 0px;
+            width: 120px;
+
+            .button-fon {
+                width: 120px;
+                height: 120px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgb(193, 193, 193);
+                background: radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, .12) 0, rgba(255, 255, 255, 0) 100%);
+
+
+                .button-image-one {
+                    @extend %button-block;
+                    background: url("../../../public/image/pc.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                }
+
+                .button-image-two {
+                    @extend %button-block;
+                    background: url("../../../public/image/2.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                }
+
+                .button-image-three {
+                    @extend %button-block;
+                    background: url("../../../public/image/3.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                }
+
+                .button-image-four {
+                    @extend %button-block;
+                    background: url("../../../public/image/4.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                }
+
+                .button-image-five {
+                    @extend %button-block;
+                    background: url("../../../public/image/5.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                }
+                .button-image {
+                    filter: grayscale(100);
+                }
+
+                .button-image:hover {
+                    filter: grayscale(0);
+                }
+            }
+
+            p {
+                color: white;
+                margin-top: 20px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+
+
+        }
+    }
+}

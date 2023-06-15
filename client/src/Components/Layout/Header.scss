@@ -1,0 +1,90 @@
+%userPartImg {
+    margin-left: 14px;
+    width: 26px;
+    height: 30px;
+}
+
+.Header-page {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    background-color: rgb(24, 24, 24);
+    border-bottom: 1px solid rgb(54, 54, 54);
+
+    .tool-part {
+        display: flex;
+
+        img {
+            width: 100px;
+            margin: 0px 20px 0px 20px;
+        }
+
+        .button-tool {
+            display: flex;
+            width: 380px;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+    }
+
+    .user-part {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 200px;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin: 0px 100px;
+
+        .user-basket {
+            .icon-part {
+                display: flex;
+                margin-top: 20px;
+
+                img {
+                    @extend %userPartImg
+                }
+
+                p {
+                    background: rgb(255, 158, 48);
+                    color: black;
+                    width: 22px;
+                    text-align: center;
+                    border-radius: 5px;
+                    margin: 0px 0px 8px 10px;
+                }
+            }
+
+            p {
+                margin-top: 5px;
+            }
+        }
+
+        .user-favorite {
+            .icon-part {
+                display: flex;
+                margin-top: 20px;
+                img {
+                    @extend %userPartImg
+                }
+                p {
+                    background: rgb(255, 158, 48);
+                    color: black;
+                    width: 22px;
+                    text-align: center;
+                    border-radius: 5px;
+                    margin: 0px 0px 8px 10px;
+                }
+            }
+            p {
+                margin-top: 5px;
+            }
+        }
+    }
+}
