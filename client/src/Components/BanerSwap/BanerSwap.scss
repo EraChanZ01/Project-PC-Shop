@@ -5,6 +5,8 @@
 }
 
 .main-page-baner {
+    z-index: 1;
+    position: relative;
     .baner {
         height: 650px;
         background-repeat: no-repeat;

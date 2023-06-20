@@ -1,7 +1,21 @@
 import React from "react";
 import './Header.scss'
+import { openModalRegister, openModalLogOn } from '../../store/slice/modalSlice'
+import { connect } from "react-redux";
 
-function Header() {
+function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn }: any) {
+
+    const HandelClickRegister = () => {
+        if (!modalRegister) {
+            openModalRegister()
+        }
+    }
+    const HandelClickLogOn = () => {
+        if (!modalLogOn) {
+            openModalLogOn()
+        }
+    }
+
     return (
         <div className="Header-page">
             <div className="tool-part">
@@ -28,9 +42,24 @@ function Header() {
                     </div>
                     <p>Basket</p>
                 </div>
+                <div className="user-auth">
+                    <button className="Log-out">Log out</button>
+                    <button className="Sign-in" onClick={HandelClickLogOn}>Sign in</button>
+                    <button className="Sign-up" onClick={HandelClickRegister}>Sign up</button>
+                </div>
             </div>
+
         </div>
     );
 }
 
-export default Header;
+const mapStateToProps = (state: any) => {
+    return { ...state.modalStore }
+
+}
+const mapDispatchToProps = (dispatch: any) => ({
+    openModalRegister: () => dispatch(openModalRegister()),
+    openModalLogOn: () => dispatch(openModalLogOn())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
