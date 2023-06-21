@@ -31,10 +31,11 @@ export const checkAuth = async () => {
     const option = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': `${accessToken}`
         },
     }
-    const response = await fetch('http://localhost:5000/api/auth/login', option)
+    const response = await fetch('http://localhost:5000/api/auth/checkAuth', option)
         .then(data => data.json())
+
+    return response
 }

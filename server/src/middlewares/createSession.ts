@@ -1,14 +1,11 @@
 const jwt = require('jsonwebtoken')
 const { promisify } = require('util')
 const jwtSign = promisify(jwt.sign)
-const jwtVerify = promisify(jwt.verify)
 const db = require('../models')
+import CONSTANTS from '../constants'
+import TokenError from '../Errors/TokenError'
 
 
-
-const EXPIRES_TIME = 100
-
-const secret = 'qwerty'
 interface IToken {
     id: Number,
     phoneNumber: Number,
@@ -25,13 +22,13 @@ export const checkAuth = async (req: any, res: any, next: Function) => {
         if (!accessToken) {
             throw 'err'
         }
-        const tokenData = await jwt.verify(accessToken, secret)
+        const tokenData = await jwt.verify(accessToken, CONSTANTS.SECRET)
         const userFind = await db.User.findOne({
             where: { id: tokenData.id }
         })
         res.status(200).send({ data: userFind })
     } catch (e) {
-        next(e)
+        next(new TokenError('token error'))
     }
 
 
@@ -56,9 +53,9 @@ export const createdToken = async (
             createdAt,
             updatedAt
         },
-        secret,
+        CONSTANTS.SECRET,
         {
-            expiresIn: EXPIRES_TIME
+            expiresIn: CONSTANTS.EXPIRES_TIME
         }
     )
 
@@ -68,7 +65,7 @@ export const verefyToken = async (req: any, res: any, next: Function) => {
         if (!accessToken) {
             throw 'err'
         }
-        req.tokenData = await jwt.verify(accessToken, secret)
+        req.tokenData = await jwt.verify(accessToken, CONSTANTS.SECRET)
         next()
     } catch (e) {
         next(e)

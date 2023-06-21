@@ -3,7 +3,7 @@ import './Header.scss'
 import { openModalRegister, openModalLogOn } from '../../store/slice/modalSlice'
 import { connect } from "react-redux";
 
-function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn }: any) {
+function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, data }: any) {
 
     const HandelClickRegister = () => {
         if (!modalRegister) {
@@ -43,9 +43,17 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn }
                     <p>Basket</p>
                 </div>
                 <div className="user-auth">
-                    <button className="Log-out">Log out</button>
-                    <button className="Sign-in" onClick={HandelClickLogOn}>Sign in</button>
-                    <button className="Sign-up" onClick={HandelClickRegister}>Sign up</button>
+                    {data ? (
+                        <>
+                            <button className="Log-out">Log out</button>
+                        </>
+                    ) : (
+                        <>
+                            <button className="Sign-in" onClick={HandelClickLogOn}>Sign in</button>
+                            <button className="Sign-up" onClick={HandelClickRegister}>Sign up</button>
+                        </>
+                    )}
+
                 </div>
             </div>
 
@@ -54,7 +62,7 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn }
 }
 
 const mapStateToProps = (state: any) => {
-    return { ...state.modalStore }
+    return { ...state.modalStore, ...state.userStore }
 
 }
 const mapDispatchToProps = (dispatch: any) => ({
