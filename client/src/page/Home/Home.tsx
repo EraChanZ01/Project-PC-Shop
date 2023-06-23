@@ -2,17 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import Layout from "../../Components/Layout/Layout";
 import BanerSwap from '../../Components/BanerSwap/BanerSwap'
+import PcDesk from '../../Components/PcDesk/PcDesk'
 import { exitModalRegister, exitModalLogOn } from "../../store/slice/modalSlice"
 import { registerUser, loginUser } from "../../store/slice/authSlice"
 import ModalAuth from "../../Components/Modal/ModalAuth"
 
-function Home({ exitModalRegister, dispatchRegisterUser, exitModalLogOn,dispatchLoginUser }: any) {
+function Home({ exitModalRegister, dispatchRegisterUser, exitModalLogOn, dispatchLoginUser }: any) {
     return (
         <div className="home-page">
             <div className="main-page">
                 <Layout>
                     <BanerSwap />
-
+                    <PcDesk />
                 </Layout>
             </div>
             <ModalAuth input={[

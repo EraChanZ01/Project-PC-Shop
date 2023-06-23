@@ -26,16 +26,17 @@ function BanerSwap() {
                     </div>
                 </div>
                 <div className="button-block">
-                    <ButtonBlock text="PC-Table" classes='button-image-one button-image' />
-                    <ButtonBlock text="Gaming" classes='button-image-two button-image' />
-                    <ButtonBlock text="Workstation" classes='button-image-three button-image' />
-                    <ButtonBlock text="Computer for club" classes='button-image-four button-image' />
-                    <ButtonBlock text="Peripherals" classes='button-image-five button-image' />
+                    <ButtonBlock text="PC-Table" classes='button-image-one button-image' type="pc-table"  />
+                    <ButtonBlock text="Gaming" classes='button-image-two button-image' type="pc-gaming"  />
+                    <ButtonBlock text="Workstation" classes='button-image-three button-image'  type="workstation" />
+                    <ButtonBlock text="Computer for club" classes='button-image-four button-image'  type="ComputerForClub" />
+                    <ButtonBlock text="Peripherals" classes='button-image-five button-image'  type="peripherals" />
                 </div>
             </div>
         </>
     );
 }
+
 
 
 export default BanerSwap;

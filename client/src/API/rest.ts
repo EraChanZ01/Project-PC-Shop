@@ -39,3 +39,16 @@ export const checkAuth = async () => {
 
     return response
 }
+export const getProduct = async (data:string) => {
+    const accessToken = localStorage.getItem('token')
+    const option = {
+        method: 'GET',
+        headers: {
+            'Authorization': `${accessToken}`
+        },
+    }
+    const response = await fetch(`http://localhost:5000/api/product/${data}`, option)
+        .then(data => data.json())
+
+    return response
+}

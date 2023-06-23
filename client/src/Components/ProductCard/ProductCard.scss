@@ -1,0 +1,108 @@
+.frame-card {
+    width: 400px;
+    border-top: 1px solid rgb(54, 54, 54);
+    margin: 0px 30px 0px 30px;
+
+    .fon-product {
+        background: radial-gradient(rgba(214, 214, 214, 0.12) 0, rgba(255, 255, 255, 0) 60%);
+        height: 320px;
+        padding: 50px 0px 0px 0px;
+        position: relative;
+
+
+        img {
+            margin-left: 40px;
+            width: 300px;
+        }
+
+        p {
+            position: absolute;
+            top: 20px;
+            margin: 0px;
+            color: white;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+    }
+
+    .part-atrebut {
+        .atrebut {
+            border-bottom: 1px solid rgb(54, 54, 54);
+            display: flex;
+            align-items: center;
+            height: 60px;
+
+            img {
+                width: 20px;
+                margin-right: 10px;
+            }
+
+            h1 {
+                font-size: 19px;
+                font-weight: 600;
+                margin-right: 20px;
+                color: rgb(228, 228, 228);
+                width: 150px;
+            }
+
+            p {
+                font-size: 16px;
+                color: rgb(182, 181, 181);
+                font-weight: 500;
+                width: 180px;
+            }
+        }
+    }
+
+    .part-price {
+        display: flex;
+        margin-top: 21px;
+        align-items: center;
+
+        p {
+            font-size: 24px;
+            font-weight: 800;
+            color: rgb(255, 208, 0);
+            margin: 0px;
+
+            span {
+                color: white;
+                margin-right: 5px;
+                font-size: 17px;
+                letter-spacing: 1px;
+            }
+        }
+
+        .button-price {
+            width: 110px;
+            height: 50px;
+            margin-left: 10px;
+            border: 3px solid rgb(255, 208, 0);
+            border-radius: .5em;
+            font-size: 17px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .button-info {
+            background: rgba(0, 0, 0, 0);
+            color: rgb(255, 208, 0);
+        }
+
+        .button-buy {
+            background: rgb(255, 208, 0);
+            color: rgb(0, 0, 0);
+        }
+    }
+}
+
+
+
+
+//.image-product {
+//    background-repeat: no-repeat;
+//    background-size: 245px 245px;
+//    height: 245px;
+//    width: 245px;
+//   margin-left: 60px;
