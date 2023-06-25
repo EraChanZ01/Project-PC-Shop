@@ -2,13 +2,36 @@
     background: rgb(26, 26, 26);
 
     .Showcase {
+        padding: 20px 250px;
+
+        .filter-cards {
+            margin: 0px 0px 30px 50px;
+            width: 170px;
+            height: 45px;
+            background: rgb(26, 26, 26);
+            border: none;
+            border-bottom: 1px solid rgb(156, 156, 156);
+            font-size: 17px;
+            padding: 10px 0px 10px 5px;
+            color: rgb(177, 177, 177);
+
+            option {
+                background: rgb(87, 87, 87);
+                border: none;
+            }
+        }
+
+        .filter-cards:focus-visible {
+            outline: none; 
+        }
+
         h1 {
             margin: 0px;
         }
 
         .cards {
             display: flex;
-            padding: 20px 250px;
+
         }
     }
 }

@@ -3,11 +3,12 @@ const ApplicationError = require('../Errors/ApplicationError')
 
 const getProduct = async (req: any, res: any, next: Function) => {
     try {
-        const { params: { category } } = req
+        const { params: { category }, query: { order } } = req
         const productFind = await db.Product.findAll({
             where: {
                 category: category
             },
+            order: [order.split('_')],
             include: [
                 {
                     model: db.ComponentsProduct,

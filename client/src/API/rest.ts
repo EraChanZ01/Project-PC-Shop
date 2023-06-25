@@ -39,7 +39,7 @@ export const checkAuth = async () => {
 
     return response
 }
-export const getProduct = async (data:string) => {
+export const getProduct = async ({ type, order }: any) => {
     const accessToken = localStorage.getItem('token')
     const option = {
         method: 'GET',
@@ -47,7 +47,7 @@ export const getProduct = async (data:string) => {
             'Authorization': `${accessToken}`
         },
     }
-    const response = await fetch(`http://localhost:5000/api/product/${data}`, option)
+    const response = await fetch(`http://localhost:5000/api/product/${type}?order=${order}`, option)
         .then(data => data.json())
 
     return response

@@ -1,19 +1,27 @@
 import React, { useEffect } from "react";
+import CONSTANTS from "../../constants"
 import { connect } from "react-redux";
+import { changeOrder } from '../../store/slice/productSlice'
 import ProductCard from "../ProductCard/ProductCard"
 import './PcDesk.scss'
 
 
-function PcDesk({ productList }: any) {
+function PcDesk({ productList, changeOrder }: any) {
     return (
         <div className="PcDesk-page">
-            <div className="Showcase">
-                <h1></h1>
-                <option></option>
-                <div className="cards">
-                    {productList?.map((card: any) => <ProductCard price={card.price} buildName={card.name} description={card.ComponentsProduct} photo={card.photo} />)}
+            {productList.length > 1 &&
+                <div className="Showcase">
+                    <h1></h1>
+                    <select className="filter-cards" onChange={(e) => changeOrder(e.target.value)}>
+                        <option value={CONSTANTS.CREATED_AT_DESC}>Firsts new</option>
+                        <option value={CONSTANTS.PRICE_ASC}>Firsts cheap</option>
+                        <option value={CONSTANTS.PRICE_DESC}>Firsts expensive</option>
+                    </select>
+                    <div className="cards">
+                        {productList?.map((card: any) => <ProductCard price={card.price} buildName={card.name} description={card.ComponentsProduct} photo={card.photo} />)}
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     )
 }
@@ -22,8 +30,13 @@ const mapStateToProps = (state: any) => {
         ...state.productStore
     }
 }
+const mapDispatchToProps = (dispatch: Function) => (
+    {
+        changeOrder: (data: any) => dispatch(changeOrder(data))
+    }
+)
 
-export default connect(mapStateToProps, null)(PcDesk)
+export default connect(mapStateToProps, mapDispatchToProps)(PcDesk)
 
 
 /*

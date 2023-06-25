@@ -5,21 +5,28 @@ import { getProducts } from "../../../store/slice/productSlice"
 interface IButtonBlock {
     text: string
     classes: string
-    dispatchGetProducts: Function
-    type: string
+    dispatchGetProducts: (data: any) => void
+    type: string,
+    order: any
 }
 
-function ButtonBlock({ text, classes, dispatchGetProducts, type }: IButtonBlock) {
+function ButtonBlock({ text, classes, dispatchGetProducts, type, order }: IButtonBlock) {
 
     return (
 
         <div className="button-frame">
             <div className="button-fon">
-                <button className={`${classes}`} onClick={() => dispatchGetProducts(type)}></button>
+                <button className={`${classes}`} onClick={() => dispatchGetProducts({ type, order })}></button>
             </div>
             <p>{text}</p>
         </div>
     )
+}
+
+const mapStateToProps = (state: any) => {
+    return {
+        order: state.productStore.order
+    }
 }
 
 const mapDispatchToProps = (dispatch: Function) => ({
@@ -27,4 +34,5 @@ const mapDispatchToProps = (dispatch: Function) => ({
 })
 
 
-export default connect(null, mapDispatchToProps)(ButtonBlock)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonBlock)

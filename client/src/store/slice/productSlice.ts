@@ -1,13 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import * as restController from "../../API/rest"
+import CONSTANTS from '../../constants'
 
 const NAME_SLICE = "productSlice"
 
 const initialState = {
-    isLoading: false
+    isLoading: false,
+    productList: [],
+    order: CONSTANTS.CREATED_AT_DESC
 }
 const reducers = {
-
+    changeOrder: (state: any, { payload }: any) => {
+        if (payload === CONSTANTS.PRICE_DESC) {
+            state.productList = state.productList.sort((a: any, b: any) => {
+                if (a.price > b.price) return -1
+                else return 1
+            })
+            state.order = CONSTANTS.PRICE_DESC
+        }
+        else if (payload === CONSTANTS.PRICE_ASC) {
+            state.productList = state.productList.sort((a: any, b: any) => {
+                if (a.price < b.price) return -1
+                else return 1
+            })
+            state.order = CONSTANTS.PRICE_ASC
+        }
+        else if (payload === CONSTANTS.CREATED_AT_DESC) {
+            state.productList = state.productList.sort((a: any, b: any) => {
+                if (a.createdAt > b.createdAt) return -1
+                else return 1
+            })
+            state.order = CONSTANTS.CREATED_AT_DESC
+        }
+    }
 }
 export const getProducts = createAsyncThunk(
     `${NAME_SLICE}/getProducts`,
@@ -47,5 +72,7 @@ const productSlice = createSlice({
 })
 
 const { actions, reducer } = productSlice
+
+export const { changeOrder } = actions
 
 export default reducer
