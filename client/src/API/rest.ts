@@ -36,7 +36,6 @@ export const checkAuth = async () => {
     }
     const response = await fetch('http://localhost:5000/api/auth/checkAuth', option)
         .then(data => data.json())
-
     return response
 }
 export const getProduct = async ({ type, order }: any) => {
@@ -50,5 +49,19 @@ export const getProduct = async ({ type, order }: any) => {
     const response = await fetch(`http://localhost:5000/api/product/${type}?order=${order}`, option)
         .then(data => data.json())
 
+    return response
+}
+
+export const addProductToFavorite = async (data: any) => {
+    const accessToken = localStorage.getItem('token')
+    const option = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    const response = await fetch(`http://localhost:5000/api/product/addFavorite`, option)
+        .then(data => data.json())
     return response
 }

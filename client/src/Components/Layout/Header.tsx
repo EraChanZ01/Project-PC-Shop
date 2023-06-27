@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './Header.scss'
+import { changeBasket } from "../../store/slice/userSlice"
 import { openModalRegister, openModalLogOn } from '../../store/slice/modalSlice'
 import { connect } from "react-redux";
 
-function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, data }: any) {
+function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, data, basket, favorite, changeBasket }: any) {
 
     const HandelClickRegister = () => {
         if (!modalRegister) {
@@ -15,6 +16,11 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, 
             openModalLogOn()
         }
     }
+
+    useEffect(() => {
+        const basketValue = localStorage.getItem('basket')
+        if (basketValue !== null) changeBasket(JSON.parse(basketValue))
+    }, [])
 
     return (
         <div className="Header-page">
@@ -31,14 +37,14 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, 
                 <div className="user-favorite">
                     <div className="icon-part">
                         <img src="/image/heart.png" />
-                        <p>3</p>
+                        <p>{favorite.length}</p>
                     </div>
                     <p>Favorite</p>
                 </div>
                 <div className="user-basket">
                     <div className="icon-part">
                         <img src="/image/basket.png" />
-                        <p>1</p>
+                        <p>{basket.length}</p>
                     </div>
                     <p>Basket</p>
                 </div>
@@ -67,7 +73,8 @@ const mapStateToProps = (state: any) => {
 }
 const mapDispatchToProps = (dispatch: any) => ({
     openModalRegister: () => dispatch(openModalRegister()),
-    openModalLogOn: () => dispatch(openModalLogOn())
+    openModalLogOn: () => dispatch(openModalLogOn()),
+    changeBasket: (data: any) => dispatch(changeBasket(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { changeFavorite } from "./userSlice"
 import * as restController from "../../API/rest"
 import CONSTANTS from '../../constants'
 
@@ -34,6 +35,19 @@ const reducers = {
         }
     }
 }
+export const addProductToFavorite = createAsyncThunk(
+    `${NAME_SLICE}/addProductToFavorite`,
+    async (payload: any, { rejectWithValue, dispatch }) => {
+        try {
+            const { data } = await restController.addProductToFavorite(payload)
+            dispatch(changeFavorite(data))
+            return data
+        } catch (e) {
+            return rejectWithValue(e)
+        }
+    }
+)
+
 export const getProducts = createAsyncThunk(
     `${NAME_SLICE}/getProducts`,
     async (payload: any, { rejectWithValue }) => {
@@ -48,6 +62,18 @@ export const getProducts = createAsyncThunk(
 )
 
 const extraReducers = (builder: any) => {
+    builder.addCase(addProductToFavorite.pending, (state: any) => {
+        state.isLoading = true
+        state.error = null
+    })
+    builder.addCase(addProductToFavorite.fulfilled, (state: any, { payload }: any) => {
+        state.isLoading = false
+        state.error = null
+    })
+    builder.addCase(addProductToFavorite.rejected, (state: any, { payload }: any) => {
+        state.isLoading = false
+        state.error = payload
+    })
     builder.addCase(getProducts.pending, (state: any) => {
         state.isLoading = true
         state.error = null

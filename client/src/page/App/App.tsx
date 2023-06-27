@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import Home from '../Home/Home'
 import { connect } from "react-redux";
 import './App.scss'
-import { checkAuth } from '../../store/slice/authSlice'
+import { checkAuth } from '../../store/slice/userSlice'
 
 function App({ checkAuth }: any) {
   useLayoutEffect(() => {

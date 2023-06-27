@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import modalReducer from "./slice/modalSlice"
-import userReducer from "./slice/authSlice"
+import userReducer from "./slice/userSlice"
 import productReducer from './slice/productSlice'
 
 

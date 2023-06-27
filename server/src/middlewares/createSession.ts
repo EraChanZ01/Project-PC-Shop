@@ -24,7 +24,12 @@ export const checkAuth = async (req: any, res: any, next: Function) => {
         }
         const tokenData = await jwt.verify(accessToken, CONSTANTS.SECRET)
         const userFind = await db.User.findOne({
-            where: { id: tokenData.id }
+            where: { id: tokenData.id },
+            include:[
+                {
+                    model: db.UserFavoriteProducts,
+                }
+            ]
         })
         res.status(200).send({ data: userFind })
     } catch (e) {

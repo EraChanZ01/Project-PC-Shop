@@ -10,9 +10,23 @@
         position: relative;
 
 
-        img {
+        .product-img {
             margin-left: 40px;
             width: 300px;
+        }
+
+        .icon-favorite {
+            width: 18px;
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .icon-favorite:hover {
+            width: 27px;
+            right: 27px;
+            bottom: 27px;
         }
 
         p {

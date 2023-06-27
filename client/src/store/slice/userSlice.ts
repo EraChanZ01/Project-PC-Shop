@@ -2,19 +2,27 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { exitModalRegister, exitModalLogOn } from './modalSlice'
 import * as restController from "../../API/rest"
 
-const SLICE_NAME = 'authSlice'
+const SLICE_NAME = 'userSlice'
 
 const initialState = {
     isLoading: false,
+    basket: [],
+    favorite: []
 }
 const reducers = {
-
+    changeBasket: (state: any, { payload }: any) => {
+        state.basket = payload
+    },
+    changeFavorite: (state: any, { payload }: any) => {
+        state.favorite = [...state.favorite, ...payload]
+    }
 }
 export const checkAuth = createAsyncThunk(
     `${SLICE_NAME}/checkAuth`,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, dispatch }) => {
         try {
             const { data }: any = await restController.checkAuth()
+            dispatch(changeFavorite(data.UserFavoriteProducts))
             return data
         } catch (e) {
             return rejectWithValue({
@@ -97,15 +105,15 @@ const extraReducers = (builder: any) => {
     })
 }
 
-const аuthSlice = createSlice({
+const userSlice = createSlice({
     name: `${SLICE_NAME}`,
     initialState,
     reducers,
     extraReducers
 })
 
-const { actions, reducer } = аuthSlice
+const { actions, reducer } = userSlice
 
-export const { } = actions
+export const { changeBasket, changeFavorite } = actions
 export default reducer
 

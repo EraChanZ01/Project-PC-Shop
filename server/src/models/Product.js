@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Product.hasOne(models.ComponentsProduct)
+      Product.hasMany(models.UserBasketProducts, {
+        foreignKey: 'productId', sourceKey: 'id'
+      })
+      Product.hasMany(models.UserFavoriteProducts, {
+        foreignKey: 'productId', sourceKey: 'id'
+      })
     }
   }
   Product.init({
@@ -30,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    category: {
+      type: DataTypes.STRING,
       allowNull: false,
     }
   }, {

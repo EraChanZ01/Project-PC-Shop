@@ -15,7 +15,12 @@ export const loginUser = async (req: any, res: any, next: Function) => {
     try {
         const { phoneNumber, password } = req.body
         const userFind = await db.User.findOne({
-            where: { phoneNumber: phoneNumber }
+            where: { phoneNumber: phoneNumber },
+            include:[
+                {
+                    model: db.UserFavoriteProducts,
+                }
+            ]
         })
         const passwordCompare = await bcrypt.compare(password, userFind.password);
         if (passwordCompare) {

@@ -18,10 +18,20 @@ const getProduct = async (req: any, res: any, next: Function) => {
         })
         res.status(200).send({ data: productFind })
     } catch (e) {
-        next(ApplicationError('Failed to get products', 404))
+        next('Failed to get products', 404)
+    }
+}
+const addProductToFavorite = async (req: any, res: any, next: Function) => {
+    try {
+        const { userId, productId } = req.body
+        const favoriteProduct = await db.UserFavoriteProducts.create({ userId, productId })
+        res.status(200).send({ data: [favoriteProduct] })
+    } catch (e) {
+        next('Failed to get products', 404)
     }
 }
 
 export default {
-    getProduct
+    getProduct,
+    addProductToFavorite
 }

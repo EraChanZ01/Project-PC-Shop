@@ -10,12 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       photo: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       price: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -25,7 +28,11 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      category: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
     });
   },
   async down(queryInterface, Sequelize) {
