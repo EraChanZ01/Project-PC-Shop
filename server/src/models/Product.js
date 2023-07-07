@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'productId', sourceKey: 'id'
       })
       Product.hasMany(models.UserFavoriteProducts, {
-        foreignKey: 'productId', sourceKey: 'id'
+        foreignKey: 'productId', sourceKey: 'id', as: 'Favorite'
       })
     }
   }

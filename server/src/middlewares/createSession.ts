@@ -25,9 +25,11 @@ export const checkAuth = async (req: any, res: any, next: Function) => {
         const tokenData = await jwt.verify(accessToken, CONSTANTS.SECRET)
         const userFind = await db.User.findOne({
             where: { id: tokenData.id },
-            include:[
+            include: [
                 {
                     model: db.UserFavoriteProducts,
+                    as: "favoriteProduct",
+
                 }
             ]
         })
@@ -35,8 +37,6 @@ export const checkAuth = async (req: any, res: any, next: Function) => {
     } catch (e) {
         next(new TokenError('token error'))
     }
-
-
 }
 
 export const createdToken = async (
@@ -68,7 +68,7 @@ export const verefyToken = async (req: any, res: any, next: Function) => {
     try {
         const accessToken = req.headers.authorization;
         if (!accessToken) {
-            throw 'err'
+            throw 'not accessToken'
         }
         req.tokenData = await jwt.verify(accessToken, CONSTANTS.SECRET)
         next()

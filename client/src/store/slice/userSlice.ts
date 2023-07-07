@@ -14,15 +14,29 @@ const reducers = {
         state.basket = payload
     },
     changeFavorite: (state: any, { payload }: any) => {
-        state.favorite = [...state.favorite, ...payload]
+        if (!payload.delete) {
+            state.favorite = [...state.favorite, ...payload.favoriteProduct]
+        } else {
+            const newFavorite = [...state.favorite]
+            const candidat = newFavorite.find((el: any) => {
+                return el.productId === payload.favoriteProduct[0].productId
+            })
+            const index = newFavorite.indexOf(candidat)
+            newFavorite.splice(index, 1)
+            state.favorite = newFavorite
+        }
+    },
+    userLogOut: (state: any,) => {
+        state.data = null
     }
 }
+
 export const checkAuth = createAsyncThunk(
     `${SLICE_NAME}/checkAuth`,
     async (payload, { rejectWithValue, dispatch }) => {
         try {
             const { data }: any = await restController.checkAuth()
-            dispatch(changeFavorite(data.UserFavoriteProducts))
+            dispatch(changeFavorite(data))
             return data
         } catch (e) {
             return rejectWithValue({
@@ -52,6 +66,7 @@ export const loginUser = createAsyncThunk(
     async (payload: any, { rejectWithValue, dispatch }) => {
         try {
             const { data }: any = await restController.loginUser(payload)
+            dispatch(changeFavorite(data))
             dispatch(exitModalLogOn())
             return data
         } catch (e) {
@@ -114,6 +129,6 @@ const userSlice = createSlice({
 
 const { actions, reducer } = userSlice
 
-export const { changeBasket, changeFavorite } = actions
+export const { changeBasket, changeFavorite, userLogOut } = actions
 export default reducer
 

@@ -19,6 +19,7 @@ export const loginUser = async (req: any, res: any, next: Function) => {
             include:[
                 {
                     model: db.UserFavoriteProducts,
+                    as: "favoriteProduct"
                 }
             ]
         })

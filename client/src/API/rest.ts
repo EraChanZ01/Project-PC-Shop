@@ -1,4 +1,3 @@
-import { access } from "fs"
 
 
 export const registerUser = async (data: any) => {
@@ -57,7 +56,8 @@ export const addProductToFavorite = async (data: any) => {
     const option = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `${accessToken}`
         },
         body: JSON.stringify(data)
     }

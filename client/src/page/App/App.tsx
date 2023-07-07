@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from '../Home/Home'
 import { connect } from "react-redux";
 import './App.scss'
@@ -10,9 +11,13 @@ function App({ checkAuth }: any) {
     checkAuth()
   }, [])
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 const mapDispatchToProps = (dispatch: any) => (

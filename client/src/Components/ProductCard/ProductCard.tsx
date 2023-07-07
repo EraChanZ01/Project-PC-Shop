@@ -5,8 +5,6 @@ import { changeBasket } from "../../store/slice/userSlice"
 import "./ProductCard.scss"
 import { connect } from "react-redux";
 
-
-
 interface IProductCard {
     id: number
     description: any,
@@ -15,38 +13,29 @@ interface IProductCard {
     photo: string,
     userId: any
     changeBasket: Function,
-    dispatchProductToFavorite: Function
+    dispatchProductToFavorite: Function,
+    favorite: any
 }
 
-function ProductCard({ description, buildName, price, photo, id, changeBasket, userId, dispatchProductToFavorite }: IProductCard) {
-
+function ProductCard({ description, buildName, price, photo, id, changeBasket, userId, dispatchProductToFavorite, favorite }: IProductCard) {
     const addProductToBasket = () => {
         const basketValue = localStorage.getItem('basket')
         if (basketValue === null) {
             localStorage.setItem('basket', JSON.stringify([{ id, price, buildName, photo }]))
-            changeBasket([{ id, price, buildName, photo }])
+            changeBasket([{ id, price, buildName, photo, userId }])
         } else {
             const basket = JSON.parse(basketValue)
             localStorage.setItem('basket', JSON.stringify([...basket, { id, price, buildName, photo }]))
-            changeBasket([...basket, { id, price, buildName, photo }])
+            changeBasket([...basket, { id, price, buildName, photo, userId }])
         }
     }
     const addProductToFavorite = () => {
-        const basketValue = localStorage.getItem('favorite')
-        if (basketValue === null) {
-            localStorage.setItem('favorite', JSON.stringify([{ id, price, buildName, photo }]))
-            dispatchProductToFavorite({ userId: 1, productId: id })
-        } else {
-            const basket = JSON.parse(basketValue)
-            localStorage.setItem('favorite', JSON.stringify([...basket, { id, price, buildName, photo }]))
-            dispatchProductToFavorite({ userId: 1, productId: id })
-        }
+        dispatchProductToFavorite({ userId, productId: id })
     }
-
     return (
         <div className="frame-card">
             <div className="fon-product">
-                <img className="icon-favorite" src={`image/heart.png`} onClick={addProductToFavorite} />
+                <div className={`${favorite ? "icon-favorite icon " : "icon"}`} onClick={addProductToFavorite} ></div>
                 <img className="product-img" src={`image/${photo}`} />
                 <p>{buildName}</p>
             </div>

@@ -7,9 +7,14 @@ import './ProductShowcase.scss'
 
 
 function ProductShowcase({ productList, changeOrder }: any) {
+    useEffect(() => {
+        const el = document.querySelector('.cards')
+        window.scroll(0, 750)
+    }, [productList])
+
     return (
         <div className="ProductShowcase-page">
-            {productList.length > 1 &&
+            {productList?.length > 1 &&
                 <div className="Showcase">
                     <h1></h1>
                     <select className="filter-cards" onChange={(e) => changeOrder(e.target.value)}>
@@ -18,7 +23,14 @@ function ProductShowcase({ productList, changeOrder }: any) {
                         <option value={CONSTANTS.PRICE_DESC}>Firsts expensive</option>
                     </select>
                     <div className="cards">
-                        {productList?.map((card: any) => <ProductCard key={card.id} id={card.id} price={card.price} buildName={card.name} description={card.ComponentsProduct} photo={card.photo} />)}
+                        {productList?.map((card: any) => <ProductCard
+                            key={card.id} id={card.id}
+                            price={card.price}
+                            buildName={card.name}
+                            description={card.ComponentsProduct}
+                            photo={card.photo}
+                            favorite={card.Favorite}
+                        />)}
                     </div>
                 </div>
             }
@@ -27,7 +39,7 @@ function ProductShowcase({ productList, changeOrder }: any) {
 }
 const mapStateToProps = (state: any) => {
     return {
-        ...state.productStore
+        ...state.productStore,
     }
 }
 const mapDispatchToProps = (dispatch: Function) => (

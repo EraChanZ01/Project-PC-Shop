@@ -24,8 +24,21 @@ const getProduct = async (req: any, res: any, next: Function) => {
 const addProductToFavorite = async (req: any, res: any, next: Function) => {
     try {
         const { userId, productId } = req.body
-        const favoriteProduct = await db.UserFavoriteProducts.create({ userId, productId })
-        res.status(200).send({ data: [favoriteProduct] })
+        console.log(req.tokenData)
+        const findFavoriteProduct = await db.UserFavoriteProducts.findOne({
+            where: { userId, productId }
+        })
+        if (findFavoriteProduct) {
+            const deleteFavoriteProduct = await findFavoriteProduct.destroy()
+            return res.status(200).send({
+                data: { favoriteProduct: [{ userId, productId }], delete: true }
+            })
+        } else {
+            const favoriteProduct = await db.UserFavoriteProducts.create({ userId, productId })
+            return res.status(200).send({
+                data: { favoriteProduct: [favoriteProduct], delete: false }
+            })
+        }
     } catch (e) {
         next('Failed to get products', 404)
     }

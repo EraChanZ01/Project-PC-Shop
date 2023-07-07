@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import './Header.scss'
-import { changeBasket } from "../../store/slice/userSlice"
+import { changeBasket, userLogOut } from "../../store/slice/userSlice"
 import { openModalRegister, openModalLogOn } from '../../store/slice/modalSlice'
 import { connect } from "react-redux";
 
-function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, data, basket, favorite, changeBasket }: any) {
+function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, data, basket, favorite, changeBasket, userLogOut }: any) {
 
     const HandelClickRegister = () => {
         if (!modalRegister) {
@@ -16,8 +16,12 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, 
             openModalLogOn()
         }
     }
+    const HandelClickLogOut = () => {
+        localStorage.removeItem('token')
+        userLogOut()
+    }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const basketValue = localStorage.getItem('basket')
         if (basketValue !== null) changeBasket(JSON.parse(basketValue))
     }, [])
@@ -51,7 +55,7 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, 
                 <div className="user-auth">
                     {data ? (
                         <>
-                            <button className="Log-out">Log out</button>
+                            <button className="Log-out" onClick={HandelClickLogOut}>Log out</button>
                         </>
                     ) : (
                         <>
@@ -74,7 +78,8 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => ({
     openModalRegister: () => dispatch(openModalRegister()),
     openModalLogOn: () => dispatch(openModalLogOn()),
-    changeBasket: (data: any) => dispatch(changeBasket(data))
+    changeBasket: (data: any) => dispatch(changeBasket(data)),
+    userLogOut: () => dispatch(userLogOut())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
