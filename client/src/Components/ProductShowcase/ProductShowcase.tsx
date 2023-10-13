@@ -5,8 +5,31 @@ import { changeOrder } from '../../store/slice/productSlice'
 import ProductCard from "../ProductCard/ProductCard"
 import './ProductShowcase.scss'
 
+interface IProduct {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    characteristics: {
+        cpu: string;
+        mainboard: string;
+        cooling: string;
+        ram: string;
+        graphic: string;
+        power: string;
+        ssd: string;
+        case: string;
+        os: string;
+    };
 
-function ProductShowcase({ productList, changeOrder }: any) {
+}
+
+interface IProductShowcase {
+    productList: IProduct[]
+    changeOrder: Function
+}
+
+function ProductShowcase({ productList, changeOrder }: IProductShowcase) {
     useEffect(() => {
         const el = document.querySelector('.cards')
         window.scroll(0, 750)
@@ -39,7 +62,7 @@ function ProductShowcase({ productList, changeOrder }: any) {
 }
 const mapStateToProps = (state: any) => {
     return {
-        ...state.productStore,
+        productList: state.productStore.productList,
     }
 }
 const mapDispatchToProps = (dispatch: Function) => (

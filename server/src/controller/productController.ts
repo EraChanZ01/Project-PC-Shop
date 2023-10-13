@@ -24,7 +24,6 @@ const getProduct = async (req: any, res: any, next: Function) => {
 const addProductToFavorite = async (req: any, res: any, next: Function) => {
     try {
         const { userId, productId } = req.body
-        console.log(req.tokenData)
         const findFavoriteProduct = await db.UserFavoriteProducts.findOne({
             where: { userId, productId }
         })

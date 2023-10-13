@@ -1,16 +1,19 @@
 %userPartImg {
-    margin-left: 14px;
     width: 26px;
     height: 30px;
 }
 
 .Header-page {
-    height: 100px;
+    height: 11.9vh;
     display: flex;
     justify-content: space-between;
     color: white;
     background-color: rgb(24, 24, 24);
     border-bottom: 1px solid rgb(54, 54, 54);
+
+    @media(max-width: 635px) {
+        height: 70px;
+    }
 
     .tool-part {
         display: flex;
@@ -18,6 +21,17 @@
         img {
             width: 100px;
             margin: 0px 20px 0px 20px;
+
+            @media(max-width: 970px) {
+                width: 50px;
+                margin: 25px 10px 0px 10px;
+            }
+
+            @media(max-width: 635px) {
+                width: 0px;
+                margin: 5px;
+            }
+
         }
 
         .button-tool {
@@ -28,6 +42,34 @@
             font-size: 20px;
             font-weight: 600;
             letter-spacing: 1px;
+
+            a {
+                text-decoration: none;
+            }
+
+            p {
+                color: white;
+            }
+
+            @media(max-width: 970px) {
+                font-size: 16px;
+                width: 300px;
+            }
+
+            @media(max-width: 800px) {
+                font-size: 12px;
+                width: 230px;
+            }
+
+            @media(max-width: 600px) {
+                font-size: 10px;
+                width: 200px;
+            }
+
+            @media(max-width: 445px) {
+                font-size: 9px;
+                width: 175px;
+            }
         }
 
     }
@@ -42,38 +84,113 @@
         letter-spacing: 1px;
         margin: 0px 40px;
 
+        @media(max-width: 970px) {
+            width: 370px;
+            margin-right: 5px;
+        }
+
+        @media(max-width: 600px) {
+            width: 300px;
+            margin-left: 5px;
+        }
+
         .user-basket {
+            margin-left: 5px;
 
-            .icon-part {
-                display: flex;
-                margin-top: 20px;
+            a {
+                color: white;
+                text-decoration: none;
 
-                img {
-                    @extend %userPartImg
+                .icon-part {
+                    display: flex;
+                    margin-top: 20px;
+                    justify-content: center;
+
+                    @media(max-width: 550px) {
+                        height: 20px;
+                    }
+
+                    img {
+                        @extend %userPartImg;
+
+                        @media(max-width: 970px) {
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                        @media(max-width: 550px) {
+                            width: 15px;
+                            height: 15px;
+                        }
+                    }
+
+                    p {
+                        background: rgb(255, 158, 48);
+                        color: black;
+                        width: 22px;
+                        text-align: center;
+                        border-radius: 5px;
+                        margin: 0px 0px 8px 10px;
+
+                        @media(max-width: 970px) {
+                            font-size: 12px;
+                            width: 17px;
+                            padding: 1px;
+                            border-radius: 2px;
+                        }
+
+                        @media(max-width: 550px) {
+                            width: 6px;
+                            font-size: 11px;
+                            margin: 0px 0px 0px 4px;
+                            height: 14px;
+                        }
+                    }
                 }
 
                 p {
-                    background: rgb(255, 158, 48);
-                    color: black;
-                    width: 22px;
-                    text-align: center;
-                    border-radius: 5px;
-                    margin: 0px 0px 8px 10px;
-                }
-            }
+                    margin-top: 5px;
 
-            p {
-                margin-top: 5px;
+                    @media(max-width: 970px) {
+                        font-size: 15px;
+                        text-align: center;
+                    }
+
+                    @media(max-width: 550px) {
+                        font-size: 12px;
+                    }
+
+                    @media(max-width: 445px) {
+                        font-size: 8px;
+                    }
+                }
             }
         }
 
         .user-favorite {
+            margin-right: 5px;
+
             .icon-part {
                 display: flex;
                 margin-top: 20px;
+                justify-content: center;
+
+                @media(max-width: 550px) {
+                    height: 20px;
+                }
 
                 img {
-                    @extend %userPartImg
+                    @extend %userPartImg;
+
+                    @media(max-width: 970px) {
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    @media(max-width: 550px) {
+                        width: 15px;
+                        height: 15px;
+                    }
                 }
 
                 p {
@@ -83,11 +200,39 @@
                     text-align: center;
                     border-radius: 5px;
                     margin: 0px 0px 8px 10px;
+
+                    @media(max-width: 970px) {
+                        font-size: 12px;
+                        width: 17px;
+                        padding: 1px;
+                        border-radius: 2px;
+                    }
+
+                    @media(max-width: 550px) {
+                        width: 6px;
+                        font-size: 11px;
+                        margin: 0px 0px 0px 4px;
+                        height: 14px;
+                    }
+
                 }
             }
 
             p {
                 margin-top: 5px;
+
+                @media(max-width: 970px) {
+                    font-size: 15px;
+                    text-align: center;
+                }
+
+                @media(max-width: 550px) {
+                    font-size: 12px;
+                }
+
+                @media(max-width: 445px) {
+                    font-size: 8px;
+                }
             }
         }
 
@@ -96,13 +241,28 @@
             display: flex;
             justify-content: right;
 
+            @media(max-width: 970px) {
+                width: auto;
+            }
+
             button {
                 border: none;
-                background: rgba(0,0,0,0);
+                background: rgba(0, 0, 0, 0);
                 color: white;
                 font-size: 19px;
                 font-weight: 500;
                 margin-right: 20px;
+
+                @media(max-width: 970px) {
+                    font-size: 15px;
+                    font-weight: 600;
+                    margin-right: 10px;
+                }
+
+                @media(max-width: 550px) {
+                    font-size: 10px;
+                    margin-right: 0px;
+                }
             }
         }
     }

@@ -1,7 +1,8 @@
+import ApplicationError from '../Errors/ApplicationError';
+import { createdToken } from '../middlewares/createSession'
+import bcrypt from 'bcrypt' ;
 const db = require('../models')
-const bcrypt = require('bcrypt');
-const ApplicationError = require('../Errors/ApplicationError')
-const { createdToken } = require('../middlewares/createSession')
+
 
 export const registerUser = async (req: any, res: any, next: Function) => {
     try {
@@ -11,12 +12,13 @@ export const registerUser = async (req: any, res: any, next: Function) => {
         next(new ApplicationError("register error", 500))
     }
 }
+
 export const loginUser = async (req: any, res: any, next: Function) => {
     try {
         const { phoneNumber, password } = req.body
         const userFind = await db.User.findOne({
             where: { phoneNumber: phoneNumber },
-            include:[
+            include: [
                 {
                     model: db.UserFavoriteProducts,
                     as: "favoriteProduct"

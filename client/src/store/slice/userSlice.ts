@@ -7,11 +7,28 @@ const SLICE_NAME = 'userSlice'
 const initialState = {
     isLoading: false,
     basket: [],
-    favorite: []
+    favorite: [],
+    discount: 0
 }
 const reducers = {
+    deleteProductFromBasket: (state: any, { payload }: any) => {
+        const newBasket = [...state.basket]
+        const index = newBasket.findIndex((el) => el.id === payload.id)
+        newBasket.splice(index, 1)
+        state.basket = newBasket
+        localStorage.setItem('basket', JSON.stringify(newBasket))
+    },
     changeBasket: (state: any, { payload }: any) => {
         state.basket = payload
+    },
+    increaseQuantityProduct: (state: any, { payload }: any) => {
+        if (payload.quantity > 0) {
+            const newBasket = [...state.basket]
+            const index = newBasket.findIndex((el) => el.id === payload.id)
+            newBasket[index].price = (newBasket[index].price / newBasket[index].quantity) * payload.quantity
+            newBasket[index].quantity = payload.quantity
+            state.basket = newBasket
+        }
     },
     changeFavorite: (state: any, { payload }: any) => {
         if (!payload.delete) {
@@ -129,6 +146,11 @@ const userSlice = createSlice({
 
 const { actions, reducer } = userSlice
 
-export const { changeBasket, changeFavorite, userLogOut } = actions
+export const {
+    changeBasket,
+    changeFavorite,
+    userLogOut,
+    increaseQuantityProduct,
+    deleteProductFromBasket } = actions
 export default reducer
 

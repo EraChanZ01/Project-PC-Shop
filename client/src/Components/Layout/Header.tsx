@@ -1,10 +1,12 @@
 import React, { useLayoutEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import './Header.scss'
 import { changeBasket, userLogOut } from "../../store/slice/userSlice"
 import { openModalRegister, openModalLogOn } from '../../store/slice/modalSlice'
 import { connect } from "react-redux";
 
 function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, data, basket, favorite, changeBasket, userLogOut }: any) {
+
 
     const HandelClickRegister = () => {
         if (!modalRegister) {
@@ -29,9 +31,9 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, 
     return (
         <div className="Header-page">
             <div className="tool-part">
-                <div><img src="/image/logo.jpg" /></div>
+                <Link to='/'><div><img src="/image/logo.jpg" /></div></Link>
                 <div className="button-tool">
-                    <p>Catalog</p>
+                    <Link to='/'><p>Catalog</p></Link>
                     <p>Services</p>
                     <p>Buyers</p>
                     <p>Contact us</p>
@@ -46,11 +48,13 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, 
                     <p>Favorite</p>
                 </div>
                 <div className="user-basket">
-                    <div className="icon-part">
-                        <img src="/image/basket.png" />
-                        <p>{basket.length}</p>
-                    </div>
-                    <p>Basket</p>
+                    <Link to='/basket'>
+                        <div className="icon-part">
+                            <img src="/image/basket.png" />
+                            <p>{basket.length}</p>
+                        </div>
+                        <p>Basket</p>
+                    </Link>
                 </div>
                 <div className="user-auth">
                     {data ? (

@@ -20,13 +20,22 @@ interface IProductCard {
 function ProductCard({ description, buildName, price, photo, id, changeBasket, userId, dispatchProductToFavorite, favorite }: IProductCard) {
     const addProductToBasket = () => {
         const basketValue = localStorage.getItem('basket')
+        const productDate = {
+            id,
+            price,
+            buildName,
+            photo,
+            description,
+            userId,
+            quantity: 1
+        }
         if (basketValue === null) {
-            localStorage.setItem('basket', JSON.stringify([{ id, price, buildName, photo }]))
-            changeBasket([{ id, price, buildName, photo, userId }])
+            localStorage.setItem('basket', JSON.stringify([productDate]))
+            changeBasket([productDate])
         } else {
             const basket = JSON.parse(basketValue)
-            localStorage.setItem('basket', JSON.stringify([...basket, { id, price, buildName, photo }]))
-            changeBasket([...basket, { id, price, buildName, photo, userId }])
+            localStorage.setItem('basket', JSON.stringify([...basket, productDate]))
+            changeBasket([...basket, productDate])
         }
     }
     const addProductToFavorite = () => {
