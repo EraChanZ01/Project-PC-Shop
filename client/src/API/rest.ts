@@ -8,7 +8,7 @@ export const registerUser = async (data: any) => {
         },
         body: JSON.stringify(data)
     }
-    const response = await fetch('http://localhost:5000/api/auth/register', option)
+    const response = await fetch('http://localhost:3000/api/auth/register', option)
         .then(data => data.json())
     return response
 }
@@ -20,7 +20,7 @@ export const loginUser = async (data: any) => {
         },
         body: JSON.stringify(data)
     }
-    const response = await fetch('http://localhost:5000/api/auth/login', option)
+    const response = await fetch('http://localhost:3000/api/auth/login', option)
         .then(data => data.json())
     localStorage.setItem('token', response.token)
     return response
@@ -33,7 +33,7 @@ export const checkAuth = async () => {
             'Authorization': `${accessToken}`
         },
     }
-    const response = await fetch('http://localhost:5000/api/auth/checkAuth', option)
+    const response = await fetch('http://localhost:3000/api/auth/checkAuth', option)
         .then(data => data.json())
     return response
 }
@@ -45,7 +45,7 @@ export const getProduct = async ({ type, order }: any) => {
             'Authorization': `${accessToken}`
         },
     }
-    const response = await fetch(`http://localhost:5000/api/product/${type}?order=${order}`, option)
+    const response = await fetch(`http://localhost:3000/api/product/${type}?order=${order}`, option)
         .then(data => data.json())
 
     return response
@@ -61,7 +61,7 @@ export const addProductToFavorite = async (data: any) => {
         },
         body: JSON.stringify(data)
     }
-    const response = await fetch(`http://localhost:5000/api/product/addFavorite`, option)
+    const response = await fetch(`http://localhost:3000/api/product/addFavorite`, option)
         .then(data => data.json())
     return response
 }

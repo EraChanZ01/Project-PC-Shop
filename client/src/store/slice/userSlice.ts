@@ -32,11 +32,11 @@ const reducers = {
     },
     changeFavorite: (state: any, { payload }: any) => {
         if (!payload.delete) {
-            state.favorite = [...state.favorite, ...payload.favoriteProduct]
+            state.favorite = [...state.favorite, ...payload.Products]
         } else {
             const newFavorite = [...state.favorite]
             const candidat = newFavorite.find((el: any) => {
-                return el.productId === payload.favoriteProduct[0].productId
+                return el.productId === payload.Products[0].id
             })
             const index = newFavorite.indexOf(candidat)
             newFavorite.splice(index, 1)

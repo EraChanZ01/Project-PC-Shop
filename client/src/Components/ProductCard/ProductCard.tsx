@@ -39,6 +39,14 @@ function ProductCard({ description, buildName, price, photo, id, changeBasket, u
         }
     }
     const addProductToFavorite = () => {
+        const productDate = {
+            id,
+            price,
+            buildName,
+            photo,
+            description,
+            userId,
+        }
         dispatchProductToFavorite({ userId, productId: id })
     }
     return (

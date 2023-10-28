@@ -27,9 +27,13 @@ export const checkAuth = async (req: any, res: any, next: Function) => {
             where: { id: tokenData.id },
             include: [
                 {
-                    model: db.UserFavoriteProducts,
-                    as: "favoriteProduct",
-
+                    model: db.Product,
+                    include: [
+                        {
+                            model: db.ComponentsProduct,
+                            attributes: { exclude: ['productId', 'createdAt', 'updatedAt', 'ProductId'] }
+                        }
+                    ]
                 }
             ]
         })

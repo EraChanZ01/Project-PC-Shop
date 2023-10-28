@@ -74,9 +74,9 @@ const extraReducers = (builder: any) => {
         state.error = null
     })
     builder.addCase(addProductToFavorite.fulfilled, (state: any, { payload }: any) => {
-        const favoriteProduct = payload.favoriteProduct[0]
+        const favoriteProduct = payload.Products[0]
         const newProductList = [...state.productList]
-        const candidat = newProductList.find((el: any) => el.id === favoriteProduct.productId)
+        const candidat = newProductList.find((el: any) => el.id === favoriteProduct.id)
         if (candidat) {
             const index = newProductList.indexOf(candidat)
             if (!payload.delete) {

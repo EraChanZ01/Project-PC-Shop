@@ -1,5 +1,5 @@
+import ApplicationError from '../Errors/ApplicationError';
 const db = require('../models')
-const ApplicationError = require('../Errors/ApplicationError')
 
 const getProduct = async (req: any, res: any, next: Function) => {
     try {
@@ -18,28 +18,29 @@ const getProduct = async (req: any, res: any, next: Function) => {
         })
         res.status(200).send({ data: productFind })
     } catch (e) {
-        next('Failed to get products', 404)
+        next(new ApplicationError('Failed to get products', 500))
     }
 }
 const addProductToFavorite = async (req: any, res: any, next: Function) => {
     try {
         const { userId, productId } = req.body
+        const product = await db.Product.findByPk(productId)
         const findFavoriteProduct = await db.UserFavoriteProducts.findOne({
-            where: { userId, productId }
+            where: { productId, userId }
         })
         if (findFavoriteProduct) {
             const deleteFavoriteProduct = await findFavoriteProduct.destroy()
             return res.status(200).send({
-                data: { favoriteProduct: [{ userId, productId }], delete: true }
+                data: { Products: [product], delete: true }
             })
         } else {
-            const favoriteProduct = await db.UserFavoriteProducts.create({ userId, productId })
+            const favoriteProduct = await db.UserFavoriteProducts.create({ productId, userId })
             return res.status(200).send({
-                data: { favoriteProduct: [favoriteProduct], delete: false }
+                data: { Products: [product], delete: false }
             })
         }
     } catch (e) {
-        next('Failed to get products', 404)
+        next(new ApplicationError('Failed to get products', 500))
     }
 }
 

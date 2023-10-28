@@ -8,9 +8,10 @@ import Basket from '../Basket/Basket'
 import { connect } from "react-redux";
 import './App.scss'
 import { checkAuth } from '../../store/slice/userSlice'
+import Favorite from "../Favorite/Favorite";
 
 function App({ checkAuth, exitModalRegister, dispatchRegisterUser, exitModalLogOn, dispatchLoginUser }: any) {
-  
+
   useLayoutEffect(() => {
     checkAuth()
   }, [])
@@ -21,6 +22,7 @@ function App({ checkAuth, exitModalRegister, dispatchRegisterUser, exitModalLogO
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/basket" element={<Basket />} />
+          <Route path="/favorite" element={<Favorite />} />
         </Routes>
         <ModalAuth input={[
           { name: 'firstName', text: "First Name" },

@@ -41,11 +41,13 @@ function Header({ openModalRegister, modalRegister, modalLogOn, openModalLogOn, 
             </div>
             <div className="user-part">
                 <div className="user-favorite">
-                    <div className="icon-part">
-                        <img src="/image/heart.png" />
-                        <p>{favorite.length}</p>
-                    </div>
-                    <p>Favorite</p>
+                    <Link to='/favorite'>
+                        <div className="icon-part">
+                            <img src="/image/heart.png" />
+                            <p>{favorite.length}</p>
+                        </div>
+                        <p>Favorite</p>
+                    </Link>
                 </div>
                 <div className="user-basket">
                     <Link to='/basket'>

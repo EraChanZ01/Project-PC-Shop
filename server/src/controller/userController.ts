@@ -1,6 +1,6 @@
 import ApplicationError from '../Errors/ApplicationError';
 import { createdToken } from '../middlewares/createSession'
-import bcrypt from 'bcrypt' ;
+import bcrypt from 'bcrypt';
 const db = require('../models')
 
 
@@ -20,8 +20,13 @@ export const loginUser = async (req: any, res: any, next: Function) => {
             where: { phoneNumber: phoneNumber },
             include: [
                 {
-                    model: db.UserFavoriteProducts,
-                    as: "favoriteProduct"
+                    model: db.Product,
+                    include: [
+                        {
+                            model: db.ComponentsProduct,
+                            attributes: { exclude: ['productId', 'createdAt', 'updatedAt', 'ProductId'] }
+                        }
+                    ]
                 }
             ]
         })
