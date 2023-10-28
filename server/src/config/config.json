@@ -3,8 +3,11 @@
     "username": "postgres",
     "password": "postgres",
     "database": "postgres",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "host": "db-dev-pg",
+    "port": 5432,
+    "dialect": "postgres",
+    "operatorsAliases": "Op",
+    "seederStorage": "sequelize"
   },
   "test": {
     "username": "root",
