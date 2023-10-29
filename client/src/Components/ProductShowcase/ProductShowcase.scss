@@ -31,9 +31,12 @@
 
         .cards {
             display: grid;
-            grid-template-columns: 380px 380px 380px;
-            grid-template-rows: 991px 991px 991px;
-            gap: 80px;
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-template-columns: 380px 380px 380px; 
+            column-gap: 80px;
+            row-gap: 80px;
 
         }
     }
