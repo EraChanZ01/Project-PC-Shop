@@ -1,0 +1,70 @@
+module.exports = {
+    up: (queryInterface, Sequelize) => {
+        return queryInterface.bulkInsert('products', [
+            {
+                id: 1,
+                name: 'ONE',
+                photo: 'start2.png',
+                price: '3300',
+                category: 'pc-table',
+                createdAt: "20023-09-11 10:10:10",
+                updatedAt: "20023-09-11 10:10:10",
+            },
+            {
+                id: 2,
+                name: 'PLUS',
+                photo: 'stol_voda.png',
+                price: '4450',
+                category: 'pc-table',
+                createdAt: "20023-09-11 10:11:10",
+                updatedAt: "20023-09-11 10:11:10",
+            },
+            {
+                id: 3,
+                name: 'MAX',
+                photo: 'high1.png',
+                price: '8750',
+                category: 'pc-table',
+                createdAt: "20023-09-11 10:12:10",
+                updatedAt: "20023-09-11 10:12:10",
+            },
+            {
+                id: 4,
+                name: 'ARTLINE Gaming X68',
+                photo: '2013039.png',
+                price: '320',
+                category: 'pc-gaming',
+                createdAt: "20023-09-11 10:13:10",
+                updatedAt: "20023-09-11 10:13:10",
+            },
+            {
+                id: 5,
+                name: 'ARTLINE Overlord DRAGON',
+                photo: '2134154.png',
+                price: '510',
+                category: 'pc-gaming',
+                createdAt: "20023-09-11 10:14:10",
+                updatedAt: "20023-09-11 10:14:10",
+            },
+            {
+                id: 6,
+                name: 'Artline Gaming X79',
+                photo: '1536928.png',
+                price: '800',
+                category: 'pc-gaming',
+                createdAt: "20023-09-11 10:15:10",
+                updatedAt: "20023-09-11 10:15:10",
+            },
+            {
+                id: 7,
+                name: 'Lenovo Legion T5',
+                photo: '2505205.png',
+                price: '375',
+                category: 'pc-gaming',
+                createdAt: "20023-09-11 10:16:10",
+                updatedAt: "20023-09-11 10:16:10",
+            },
+        ], {});
+    },
+
+};

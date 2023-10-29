@@ -12,9 +12,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Product.hasOne(models.ComponentsProduct)
-      //Product.hasMany(models.UserBasketProducts, {
-      // foreignKey: 'productId', sourceKey: 'id'
-      //})
       Product.belongsToMany(models.User, {
         through: 'UserFavoriteProducts',
         foreignKey: 'productId',
