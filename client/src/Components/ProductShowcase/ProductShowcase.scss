@@ -22,7 +22,7 @@
         }
 
         .filter-cards:focus-visible {
-            outline: none; 
+            outline: none;
         }
 
         h1 {
@@ -30,7 +30,10 @@
         }
 
         .cards {
-            display: flex;
+            display: grid;
+            grid-template-columns: 380px 380px 380px;
+            grid-template-rows: 991px 991px 991px;
+            gap: 80px;
 
         }
     }
