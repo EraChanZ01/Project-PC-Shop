@@ -1,4 +1,4 @@
-<h1 align="center"> Online Shopping App </h1>
+<h1 align="center"> E-Commerce </h1>
 
 <h2>Application capabilities</h2>
 <ul>
